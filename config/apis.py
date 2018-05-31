@@ -18,7 +18,7 @@ def bind_webhook(request):
 
 @csrf_exempt
 def issue_webhook(request):
-    print(request.data)
+    print(request.POST)
     return JsonResponse({
         'success': True,
         'message': 'Oauth Success !',
