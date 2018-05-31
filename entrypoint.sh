@@ -2,7 +2,8 @@
 ENV=${ENV:-API}
 PROCESSES=${PROCESSES:-1}
 
-if  [ $ENV == "STATIC" ]; then
+if  [ $ENV == "user.is_staff = True
+user.is_admin = True" ]; then
     echo "start nginx on port 80"
     nginx -g "daemon off;"
     exit -1

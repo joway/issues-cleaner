@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from config.apis import home, bind_webhook, issue_webhook
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('', home),
+    path('hook/bind', bind_webhook),
+    path('hook/issue', issue_webhook),
     path('oauth/', include('social_django.urls', namespace='social'))
 ]
