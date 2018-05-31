@@ -34,7 +34,9 @@ SECRET_KEY = '0$m)u!5%e5(^=ojzxt(4va1ao-*#c5nld%emg4@@o8hr2=s%9m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'issue.sh.mk',
+]
 
 # Application definition
 
