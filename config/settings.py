@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+# envs
+MYSQL_INSTANCE_NAME = os.environ.get('MYSQL_INSTANCE_NAME', 'cleaner')
+MYSQL_USERNAME = os.environ.get("MYSQL_USERNAME", 'root')
+MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", '')
+MYSQL_HOST = os.environ.get("MYSQL_HOST", '127.0.0.1')
+MYSQL_PORT = os.environ.get("MYSQL_PORT", '3306')
+
+GITHUB_KEY = os.environ.get('GITHUB_KEY')
+GITHUB_SECRET = os.environ.get('GITHUB_SECRET')
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -75,12 +85,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'NAME': os.environ.get('MYSQL_INSTANCE_NAME', 'cleaner'),
+        'NAME': MYSQL_INSTANCE_NAME,
         'ENGINE': 'django.db.backends.mysql',
-        'USER': os.environ.get("MYSQL_USERNAME", 'root'),
-        'PASSWORD': os.environ.get("MYSQL_PASSWORD", ''),
-        'HOST': os.environ.get("MYSQL_HOST", '127.0.0.1'),
-        'PORT': os.environ.get("MYSQL_PORT", '3306'),
+        'USER': MYSQL_USERNAME,
+        'PASSWORD': MYSQL_PASSWORD,
+        'HOST': MYSQL_HOST,
+        'PORT': MYSQL_PORT,
         'OPTIONS': {'charset': 'utf8mb4'},
     },
 }
@@ -118,14 +128,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_URL = '/static/'
+STATIC_URL = '/stk/'
+STATIC_ROOT = 'collected_static'
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_GITHUB_KEY = os.environ.get('GITHUB_KEY')
-SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_KEY = GITHUB_KEY
+SOCIAL_AUTH_GITHUB_SECRET = GITHUB_SECRET
 SOCIAL_AUTH_GITHUB_SCOPE = ['repo']
